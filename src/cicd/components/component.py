@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 import dagger
 
-from ..main import BaseConfig
+from ..config import BaseConfig
 
 
 class Component(ABC):
