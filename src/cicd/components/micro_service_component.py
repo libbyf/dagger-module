@@ -1,7 +1,7 @@
 import dagger
-from src.cicd.components.component import Component
-from src.cicd.main import BaseConfig
-from src.cicd.runners.language_runner_factory import LanguageRunnerFactory
+from .component import Component
+from ..main import BaseConfig
+from ..runners.language_runner_factory import LanguageRunnerFactory
 
 
 class MicroServiceComponent(Component):

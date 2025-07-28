@@ -1,4 +1,4 @@
-from src.cicd.components.component import Component
+from .component import Component
 
 
 class ComponentFactory:

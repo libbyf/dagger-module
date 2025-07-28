@@ -2,7 +2,7 @@ import dagger
 from dagger import dag, function, object_type, field, Doc
 from typing import Annotated
 
-from src.cicd.components.components_factory import ComponentFactory
+from .components.components_factory import ComponentFactory
 
 
 @object_type

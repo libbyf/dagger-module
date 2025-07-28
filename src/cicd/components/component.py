@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 import dagger
 
-from src.cicd.main import BaseConfig
+from ..main import BaseConfig
 
 
 class Component(ABC):

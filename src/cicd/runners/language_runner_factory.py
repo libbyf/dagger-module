@@ -1,4 +1,4 @@
-from src.cicd.runners.language_runner import LanguageRunner
+from .language_runner import LanguageRunner
 
 
 class LanguageRunnerFactory:

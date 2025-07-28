@@ -1,7 +1,7 @@
 import dagger
 from dagger import dag
 
-from src.cicd.runners.language_runner import LanguageRunner
+from .language_runner import LanguageRunner
 
 
 class PythonRunner(LanguageRunner):
