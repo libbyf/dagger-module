@@ -13,7 +13,7 @@ class JavaRunner(LanguageRunner):
     def build(self, version: str, source: dagger.Directory) -> dagger.Container:
         return (
             dag.container()
-            .from_("eclipse-temurin:17-jdk")
+            .from_(f"eclipse-temurin:{version}-jdk")
             .with_directory("/app", source)
             .with_workdir("/app")
             .with_exec(["./gradlew", "build", "--no-daemon"])
