@@ -14,4 +14,3 @@ if appropriate. All modules should have a short description.
 """
 
 from .main import Cicd as Cicd
-from .config import BaseConfig as BaseConfig

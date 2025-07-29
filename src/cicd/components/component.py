@@ -1,7 +1,6 @@
 from abc import ABC, abstractmethod
 import dagger
 
-from ..config import BaseConfig
 
 
 class Component(ABC):
@@ -13,9 +12,9 @@ class Component(ABC):
         pass
 
     @abstractmethod
-    def build(self, base_config: BaseConfig) -> dagger.Container:
+    def build(self, base_config) -> dagger.Container:
         pass
 
     @abstractmethod
-    def test(self, container: dagger.Container, base_config: BaseConfig) -> dagger.Container:
+    def test(self, container: dagger.Container, base_config) -> dagger.Container:
         pass
