@@ -2,7 +2,7 @@ import dagger
 from dagger import field, Doc, object_type
 from typing import Annotated
 
-
+@object_type
 class BaseConfig:
     component_type: Annotated[str, Doc("OpsLevel component type")] = field()
     language: Annotated[str, Doc("Project language")] = field()
