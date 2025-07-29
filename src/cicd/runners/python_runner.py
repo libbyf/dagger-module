@@ -20,4 +20,6 @@ class PythonRunner(LanguageRunner):
         )
 
     def test(self, container: dagger.Container, source: dagger.Directory) -> dagger.Container:
-        return container.with_exec(["pytest", "-m", "test"])
+        return (container
+                .with_env_variable("PYTHONPATH", "/app")
+                .with_exec(["pytest", "-m", "test"]))
