@@ -1,10 +1,15 @@
 import dagger
-from dagger import field, Doc, object_type
+from dagger import field, Doc
 from typing import Annotated
 
-@object_type
+@dagger.object_type
 class BaseConfig:
-    component_type: Annotated[str, Doc("OpsLevel component type")] = field()
-    language: Annotated[str, Doc("Project language")] = field()
-    version: Annotated[str, Doc("Project Version")] = field()
-    source: Annotated[dagger.Directory, Doc("Source point to run the build")] = field(default=lambda: dagger.Directory("."))
+    component_type: Annotated[str, Doc("OpsLevel component type")]
+    language: Annotated[str, Doc("Project language")]
+    version: Annotated[str, Doc("Project Version")]
+    source: Annotated[dagger.Directory, Doc("Source point to run the build")]
+
+    @field
+    def default_source(self) -> dagger.Directory:
+        """Default source directory"""
+        return dagger.dag.directory(".")
