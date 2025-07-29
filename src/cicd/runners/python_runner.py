@@ -20,4 +20,4 @@ class PythonRunner(LanguageRunner):
         )
 
     def test(self, container: dagger.Container, source: dagger.Directory) -> dagger.Container:
-        return container.with_exec(["invoke", "test"])
+        return container.with_exec(["pytest", "-m", "test"])

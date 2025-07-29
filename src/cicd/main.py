@@ -17,16 +17,12 @@ class Cicd:
         return component.build(base_config)
 
     @function
-    def test_1(self) -> dagger.Container:
-        return dag.container().from_("alpine:latest").with_exec(["echo", "testtttttt_1"])
-
-    @function
     def test(self, component_type: str, language: str, version: str, source: dagger.Directory) -> dagger.Container:
         """Returns a container that runs tests for the specified component type and language"""
         base_config = BaseConfig(component_type, language, version, source)
 
+        runner = self.build(component_type, language, version, source)
         component = ComponentFactory.get(base_config.component_type)
-        runner = component.build(base_config)
         return component.test(runner, base_config)
 
     @function
