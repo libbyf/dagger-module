@@ -11,11 +11,7 @@ class Cicd:
     @function
     def build(self, component_type: str, language: str, version: str, source: dagger.Directory) -> dagger.Container:
         """Returns a container built according to the base config parameters"""
-        base_config = BaseConfig()
-        base_config.component_type = component_type
-        base_config.language = language
-        base_config.version = version
-        base_config.source = source
+        base_config = BaseConfig(component_type, language, version, source)
 
         component = ComponentFactory.get(base_config.component_type)
         return component.build(base_config)
@@ -27,11 +23,7 @@ class Cicd:
     @function
     def test(self, component_type: str, language: str, version: str, source: dagger.Directory) -> dagger.Container:
         """Returns a container that runs tests for the specified component type and language"""
-        base_config = BaseConfig()
-        base_config.component_type = component_type
-        base_config.language = language
-        base_config.version = version
-        base_config.source = source
+        base_config = BaseConfig(component_type, language, version, source)
 
         component = ComponentFactory.get(base_config.component_type)
         runner = component.build(base_config)
