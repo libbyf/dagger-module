@@ -14,4 +14,3 @@ if appropriate. All modules should have a short description.
 """
 
 from .main import Cicd as Cicd
-from .components import MicroServiceComponent  # This ensures the class is loaded
