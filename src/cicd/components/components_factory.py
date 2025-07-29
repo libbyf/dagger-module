@@ -7,9 +7,14 @@ class ComponentFactory:
     @staticmethod
     def _init_components():
         if not ComponentFactory._components:
-            for subclass in Component.__subclasses__():
+            subclasses = Component.__subclasses__()
+            print(f"Found component subclasses: {subclasses}")
+            for subclass in subclasses:
                 instance = subclass()
                 ComponentFactory._components[instance.component_name] = instance
+            print(f"Registered components: {list(ComponentFactory._components.keys())}")
+        else:
+            print("components already initialized")
 
     @staticmethod
     def get(component_type: str) -> Component:
