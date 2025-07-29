@@ -1,23 +1,22 @@
 import dagger
-from dagger import dag, function, object_type, field, Doc, field, Doc, object_type
+from dagger import dag, function, object_type
 
 from .components.components_factory import ComponentFactory
+from .config.base_config import BaseConfig
 
-from typing import Annotated
-
-@object_type
-class BaseConfig:
-    component_type: Annotated[str, Doc("OpsLevel component type")] = field()
-    language: Annotated[str, Doc("Project language")] = field()
-    version: Annotated[str, Doc("Project Version")] = field()
-    source: Annotated[dagger.Directory, Doc("Source point to run the build")] = field()
 
 @object_type
 class Cicd:
 
     @function
-    def build(self, base_config: BaseConfig) -> dagger.Container:
+    def build(self, component_type: str, language: str, version: str, source: dagger.Directory) -> dagger.Container:
         """Returns a container built according to the base config parameters"""
+        base_config = BaseConfig()
+        base_config.component_type = component_type
+        base_config.language = language
+        base_config.version = version
+        base_config.source = source
+
         component = ComponentFactory.get(base_config.component_type)
         return component.build(base_config)
 
@@ -26,8 +25,14 @@ class Cicd:
         return dag.container().from_("alpine:latest").with_exec(["echo", "testtttttt_1"])
 
     @function
-    def test(self, base_config: BaseConfig) -> dagger.Container:
+    def test(self, component_type: str, language: str, version: str, source: dagger.Directory) -> dagger.Container:
         """Returns a container that runs tests for the specified component type and language"""
+        base_config = BaseConfig()
+        base_config.component_type = component_type
+        base_config.language = language
+        base_config.version = version
+        base_config.source = source
+
         component = ComponentFactory.get(base_config.component_type)
         runner = component.build(base_config)
         return component.test(runner, base_config)
