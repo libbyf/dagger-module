@@ -15,5 +15,6 @@ class LanguageRunnerFactory:
     def get(language: str) -> LanguageRunner:
         LanguageRunnerFactory._init_runners()
         if language not in LanguageRunnerFactory._runners:
-            raise Exception(f"No builder found for language '{language}'")
+            available_languages = list(LanguageRunnerFactory._runners.keys())
+            raise Exception(f"No runner found for language '{language}'. Available languages: {available_languages}")
         return LanguageRunnerFactory._runners[language]
