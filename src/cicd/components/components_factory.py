@@ -13,8 +13,8 @@ class ComponentFactory:
 
     @staticmethod
     def get(component_type: str) -> Component:
-        if ComponentFactory._components == {}:
-           ComponentFactory._init_components()
-        if component_type not in ComponentFactory._components:
-            raise Exception(f"No matching component found for type '{component_type}'")
+        ComponentFactory._init_components()
+
+        # if component_type not in ComponentFactory._components:
+        #     raise Exception(f"No matching component found for type '{component_type}'")
         return ComponentFactory._components[component_type]
